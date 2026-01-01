@@ -1,17 +1,18 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+Todo app! A simple checklist for keeping track of your goals with an optional date for when youd like to complete your task by.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+This project was a demonstration of my ability to refactor code. It features form submission with proper validation.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+This project uses HTML CSS but primarily focused on JavaScript functionality.
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+https://github.com/zyborgg/se_project_todo-app.git
+git@github.com:zyborgg/se_project_todo-app.git
