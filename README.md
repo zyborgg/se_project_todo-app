@@ -13,6 +13,4 @@ This project uses HTML CSS but primarily focused on JavaScript functionality.
 ## Deployment
 
 This project is deployed on GitHub Pages:
-
-https://github.com/zyborgg/se_project_todo-app.git
-git@github.com:zyborgg/se_project_todo-app.git
+https://zyborgg.github.io/se_project_todo-app/
