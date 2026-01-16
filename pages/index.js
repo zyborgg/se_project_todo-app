@@ -10,18 +10,19 @@ import TodoCounter from "../components/TodoCounter.js";
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
 const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
-const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
+const generateTodo = (data) => {
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
+  const todoElement = todo.getView();
+  return todoElement;
+};
+
 const section = new Section({
   items: initialTodos,
-  renderer: (item) => {
-    const todoInstance = new Todo(item, "#todo-template");
-    const todoElement = todoInstance.getView();
-    return todoElement;
-  },
+  renderer: generateTodo,
   containerSelector: ".todos__list",
 });
 section.renderItems();
@@ -34,11 +35,11 @@ const addTodoPopup = new PopupWithForm({
 
     const date = new Date(dateInput);
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
     const id = uuidv4();
 
     const values = { name, date, id };
     renderTodo(values);
+    todoCounter.updateTotal(true);
 
     addTodoPopup.close();
     newTodoValidator.resetValidation();
@@ -54,14 +55,8 @@ function handleDelete(completed) {
   if (completed) {
     todoCounter.updateCompleted(false);
   }
+  todoCounter.updateTotal(false);
 }
-
-// The logic in this function should all be handled in the Todo class.
-const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
-  const todoElement = todo.getView();
-  return todoElement;
-};
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
@@ -69,7 +64,7 @@ addTodoButton.addEventListener("click", () => {
 
 const renderTodo = (item) => {
   const todo = generateTodo(item);
-  todosList.append(todo);
+  section.addItem(todo);
 };
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
